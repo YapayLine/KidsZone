@@ -7,9 +7,9 @@ String? validateName(String? value) {
   String pattern = r'(^[a-zA-Z ]*$)';
   RegExp regExp = RegExp(pattern);
   if (value?.isEmpty ?? true) {
-    return "Name is required";
+    return "İsim gerekli";
   } else if (!regExp.hasMatch(value ?? '')) {
-    return "Name must be a-z and A-Z";
+    return "İsim a-z ve A-Z arasında olmalıdır";
   }
   return null;
 }
@@ -18,16 +18,16 @@ String? validateMobile(String? value) {
   String pattern = r'(^\+?[0-9]*$)';
   RegExp regExp = RegExp(pattern);
   if (value?.isEmpty ?? true) {
-    return "Mobile phone number is required";
+    return "Telefon numarası gerekli";
   } else if (!regExp.hasMatch(value ?? '')) {
-    return "Mobile phone number must contain only digits";
+    return "Cep telefonu numarası yalnızca rakam içermelidir.";
   }
   return null;
 }
 
 String? validatePassword(String? value) {
   if ((value?.length ?? 0) < 6) {
-    return 'Password must be more than 5 characters';
+    return 'Şifre 5 karakterden daha fazla olmalıdır.';
   } else {
     return null;
   }
@@ -38,7 +38,7 @@ String? validateEmail(String? value) {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value ?? '')) {
-    return 'Enter Valid Email';
+    return 'Geçerli e-posta girin';
   } else {
     return null;
   }
@@ -46,9 +46,9 @@ String? validateEmail(String? value) {
 
 String? validateConfirmPassword(String? password, String? confirmPassword) {
   if (password != confirmPassword) {
-    return 'Password doesn\'t match';
+    return 'Şifre eşleşmiyor';
   } else if (confirmPassword?.isEmpty ?? true) {
-    return 'Confirm password is required';
+    return 'Şifreyi onaylamanız gerekiyor';
   } else {
     return null;
   }

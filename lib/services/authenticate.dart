@@ -63,20 +63,20 @@ class FireStoreUtils {
       debugPrint('$exception$s');
       switch ((exception).code) {
         case 'invalid-email':
-          return 'Email address is malformed.';
+          return 'E-posta adresi hatalı biçimlendirilmiş.(example@example.com)';
         case 'wrong-password':
-          return 'Wrong password.';
+          return 'Şifre Yanlış.';
         case 'user-not-found':
-          return 'No user corresponding to the given email address.';
+          return 'Belirtilen e-posta adresine karşılık gelen kullanıcı yok.';
         case 'user-disabled':
-          return 'This user has been disabled.';
+          return 'Bu kullanıcı devre dışı bırakıldı.';
         case 'too-many-requests':
-          return 'Too many attempts to sign in as this user.';
+          return 'Bu kullanıcı oturum açmak için çok fazla girişimde bulundu.';
       }
-      return 'Unexpected firebase error, Please try again.';
+      return 'Beklenmeyen firebase hatası. Lütfen tekrar deneyin.';
     } catch (e, s) {
       debugPrint('$e$s');
-      return 'Login failed, Please try again.';
+      return 'Hatalı giriş. Tekrar deneyiniz!';
     }
   }
 
@@ -156,7 +156,7 @@ class FireStoreUtils {
               email: emailAddress, password: password);
       String profilePicUrl = '';
       if (imageData != null) {
-        updateProgress('Uploading image, Please wait...');
+        updateProgress('Fotoğraf yükleniyor. Lütfen bekleyin...');
         profilePicUrl =
             await uploadUserImageToServer(imageData, result.user?.uid ?? '');
       }
@@ -170,32 +170,33 @@ class FireStoreUtils {
       if (errorMessage == null) {
         return user;
       } else {
-        return 'Couldn\'t sign up for firebase, Please try again.';
+        return 'Giriş yapılamadı tekrar deneyiniz!';
       }
     } on auth.FirebaseAuthException catch (error) {
       debugPrint('$error${error.stackTrace}');
-      String message = 'Couldn\'t sign up';
+      String message = 'Giriş yapılamadı';
       switch (error.code) {
         case 'email-already-in-use':
-          message = 'Email already in use, Please pick another email!';
+          message =
+              'Mail adresi zaten kayıtlı. Lütfen farklı bir mail adresi deneyiniz.';
           break;
         case 'invalid-email':
-          message = 'Enter valid e-mail';
+          message = 'Geçerli bir mail adresi giriniz.';
           break;
         case 'operation-not-allowed':
-          message = 'Email/password accounts are not enabled';
+          message = 'Email/şifre hesabı etkin değil.';
           break;
         case 'weak-password':
-          message = 'Password must be more than 5 characters';
+          message = 'Şifre 5 karakterden fazla olmalı.';
           break;
         case 'too-many-requests':
-          message = 'Too many requests, Please try again later.';
+          message = 'Çok fazla talep var.Lütfen daha sonra tekrar deneyin.';
           break;
       }
       return message;
     } catch (e, s) {
       debugPrint('FireStoreUtils.signUpWithEmailAndPassword $e $s');
-      return 'Couldn\'t sign up';
+      return 'Giriş yapılamadı.';
     }
   }
 
@@ -243,7 +244,7 @@ class FireStoreUtils {
       if (errorMessage == null) {
         return user;
       } else {
-        return 'Couldn\'t create new user with phone number.';
+        return 'Telefon numarasıyla yeni kullanıcı oluşturulamadı.';
       }
     }
   }
@@ -254,7 +255,7 @@ class FireStoreUtils {
           requestedScopes: [apple.Scope.email, apple.Scope.fullName])
     ]);
     if (appleCredential.error != null) {
-      return 'Couldn\'t login with apple.';
+      return 'Apple ID ile giriş yapılamadı.';
     }
 
     if (appleCredential.status == apple.AuthorizationStatus.authorized) {
@@ -267,7 +268,7 @@ class FireStoreUtils {
       );
       return await handleAppleLogin(credential, appleCredential.credential!);
     } else {
-      return 'Couldn\'t login with apple.';
+      return 'Apple ID ile giriş yapılamadı.';
     }
   }
 

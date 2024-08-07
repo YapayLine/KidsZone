@@ -36,12 +36,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 if (state is ResetPasswordDone) {
                   context.read<LoadingCubit>().hideLoading();
                   showSnackBar(context,
-                      'Reset password email has been sent, Please check your email.');
+                      'Şifre sıfırlama e-postası gönderildi, lütfen e-postanızı kontrol edin.');
                   Navigator.pop(context);
                 } else if (state is ValidResetPasswordField) {
                   await context
                       .read<LoadingCubit>()
-                      .showLoading(context, 'Sending Email...', false);
+                      .showLoading(context, 'E-mail gönderiliyor...', false);
                   if (!mounted) return;
                   context
                       .read<ResetPasswordCubit>()
@@ -67,7 +67,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           padding: EdgeInsets.only(
                               top: 32.0, right: 16.0, left: 16.0),
                           child: Text(
-                            'Reset Password',
+                            'Şifre sıfırla',
                             style: TextStyle(
                                 color: Color(colorPrimary),
                                 fontSize: 25.0,
@@ -91,7 +91,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             decoration: getInputDecoration(
                                 hint: 'E-mail',
                                 darkMode: isDarkMode(context),
-                                errorColor: Theme.of(context).colorScheme.error),
+                                errorColor:
+                                    Theme.of(context).colorScheme.error),
                           ),
                         ),
                         Padding(
@@ -112,7 +113,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               ),
                             ),
                             child: const Text(
-                              'Send Email',
+                              'Email gönder',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

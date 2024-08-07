@@ -47,7 +47,7 @@ class _LoginScreen extends State<LoginScreen> {
                   } else {
                     if (!mounted) return;
                     showSnackBar(context,
-                        state.message ?? 'Couldn\'t login, Please try again.');
+                        state.message ?? 'Giriş yapılamadı. Tekrar deneyiniz!');
                   }
                 },
               ),
@@ -55,7 +55,7 @@ class _LoginScreen extends State<LoginScreen> {
                 listener: (context, state) async {
                   if (state is ValidLoginFields) {
                     await context.read<LoadingCubit>().showLoading(
-                        context, 'Logging in, Please wait...', false);
+                        context, 'Giriş yapılıyor. Lütfen bekleyiniz!', false);
                     if (!mounted) return;
                     context.read<AuthenticationBloc>().add(
                           LoginWithEmailAndPasswordEvent(
@@ -87,7 +87,7 @@ class _LoginScreen extends State<LoginScreen> {
                             padding: EdgeInsets.only(
                                 top: 32.0, right: 16.0, left: 16.0),
                             child: Text(
-                              'Sign In',
+                              'Kayıt Ol',
                               style: TextStyle(
                                   color: Color(colorPrimary),
                                   fontSize: 25.0,
@@ -109,9 +109,10 @@ class _LoginScreen extends State<LoginScreen> {
                               keyboardType: TextInputType.emailAddress,
                               cursorColor: const Color(colorPrimary),
                               decoration: getInputDecoration(
-                                  hint: 'Email Address',
+                                  hint: 'Email',
                                   darkMode: isDarkMode(context),
-                                  errorColor: Theme.of(context).colorScheme.error)),
+                                  errorColor:
+                                      Theme.of(context).colorScheme.error)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -130,9 +131,10 @@ class _LoginScreen extends State<LoginScreen> {
                               style: const TextStyle(fontSize: 18.0),
                               cursorColor: const Color(colorPrimary),
                               decoration: getInputDecoration(
-                                  hint: 'Password',
+                                  hint: 'Şifre',
                                   darkMode: isDarkMode(context),
-                                  errorColor: Theme.of(context).colorScheme.error)),
+                                  errorColor:
+                                      Theme.of(context).colorScheme.error)),
                         ),
 
                         /// forgot password text, navigates user to ResetPasswordScreen
@@ -148,7 +150,7 @@ class _LoginScreen extends State<LoginScreen> {
                                 onTap: () =>
                                     push(context, const ResetPasswordScreen()),
                                 child: const Text(
-                                  'Forgot password?',
+                                  'Şifremi Unuttum',
                                   style: TextStyle(
                                       color: Colors.lightBlue,
                                       fontWeight: FontWeight.bold,
@@ -177,7 +179,7 @@ class _LoginScreen extends State<LoginScreen> {
                               ),
                             ),
                             child: const Text(
-                              'Log In',
+                              'Giriş Yap',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -193,7 +195,7 @@ class _LoginScreen extends State<LoginScreen> {
                           padding: const EdgeInsets.all(32.0),
                           child: Center(
                             child: Text(
-                              'OR',
+                              'Ya da',
                               style: TextStyle(
                                   color: isDarkMode(context)
                                       ? Colors.white
@@ -206,7 +208,7 @@ class _LoginScreen extends State<LoginScreen> {
                               right: 40.0, left: 40.0, bottom: 20),
                           child: ElevatedButton.icon(
                             label: const Text(
-                              'Facebook Login',
+                              'Facebook ile giriş',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 20,
@@ -233,7 +235,9 @@ class _LoginScreen extends State<LoginScreen> {
                             ),
                             onPressed: () async {
                               await context.read<LoadingCubit>().showLoading(
-                                  context, 'Logging in, Please wait...', false);
+                                  context,
+                                  'Giriş yapılıyor. Lütfen bekleyiniz!',
+                                  false);
                               if (!mounted) return;
                               context
                                   .read<AuthenticationBloc>()
@@ -270,7 +274,7 @@ class _LoginScreen extends State<LoginScreen> {
                                             .read<LoadingCubit>()
                                             .showLoading(
                                                 context,
-                                                'Logging in, Please wait...',
+                                                'Giriş yapılıyor. Lütfen bekleyiniz!',
                                                 false);
                                         if (!mounted) return;
                                         context

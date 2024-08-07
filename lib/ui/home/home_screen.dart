@@ -50,7 +50,7 @@ class _HomeState extends State<HomeScreen> {
               ),
               ListTile(
                 title: Text(
-                  'Logout',
+                  'Çıkış Yap',
                   style: TextStyle(
                       color: isDarkMode(context)
                           ? Colors.grey.shade50
@@ -74,7 +74,7 @@ class _HomeState extends State<HomeScreen> {
         ),
         appBar: AppBar(
           title: Text(
-            'Home',
+            'Ana Sayfa',
             style: TextStyle(
                 color: isDarkMode(context)
                     ? Colors.grey.shade50

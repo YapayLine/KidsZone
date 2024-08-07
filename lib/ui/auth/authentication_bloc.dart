@@ -47,7 +47,7 @@ class AuthenticationBloc
         emit(AuthenticationState.unauthenticated(message: result));
       } else {
         emit(const AuthenticationState.unauthenticated(
-            message: 'Login failed, Please try again.'));
+            message: 'Hatalı giriş. Lütfen tekrar deneyiniz!'));
       }
     });
     on<LoginWithFacebookEvent>((event, emit) async {
@@ -59,7 +59,7 @@ class AuthenticationBloc
         emit(AuthenticationState.unauthenticated(message: result));
       } else {
         emit(const AuthenticationState.unauthenticated(
-            message: 'Facebook login failed, Please try again.'));
+            message: 'Facebook ile giriş hatalı!'));
       }
     });
     on<LoginWithAppleEvent>((event, emit) async {
@@ -71,7 +71,7 @@ class AuthenticationBloc
         emit(AuthenticationState.unauthenticated(message: result));
       } else {
         emit(const AuthenticationState.unauthenticated(
-            message: 'Apple login failed, Please try again.'));
+            message: 'Apple ID ile giriş hatalı!'));
       }
     });
 
@@ -104,7 +104,7 @@ class AuthenticationBloc
         emit(AuthenticationState.unauthenticated(message: result));
       } else {
         emit(const AuthenticationState.unauthenticated(
-            message: 'Couldn\'t sign up'));
+            message: 'Kayıt yapılamadı'));
       }
     });
     on<LogoutEvent>((event, emit) async {
