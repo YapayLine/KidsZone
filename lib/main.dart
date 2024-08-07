@@ -78,7 +78,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ),
               SizedBox(height: 16),
               Text(
-                'Bir Hata Oluştu!',
+                'Bir Hata Oluştu.',
                 style: TextStyle(color: Colors.red, fontSize: 25),
               ),
             ],
