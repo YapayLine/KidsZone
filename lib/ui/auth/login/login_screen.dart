@@ -191,7 +191,8 @@ class _LoginScreen extends State<LoginScreen> {
                                 .add(ValidateLoginFieldsEvent(_key)),
                           ),
                         ),
-                        Padding(
+                        //Facebook ile giriş butonu
+                        /*Padding(
                           padding: const EdgeInsets.all(32.0),
                           child: Center(
                             child: Text(
@@ -202,8 +203,8 @@ class _LoginScreen extends State<LoginScreen> {
                                       : Colors.black),
                             ),
                           ),
-                        ),
-                        Padding(
+                        ),*/
+                        /*Padding(
                           padding: const EdgeInsets.only(
                               right: 40.0, left: 40.0, bottom: 20),
                           child: ElevatedButton.icon(
@@ -244,7 +245,7 @@ class _LoginScreen extends State<LoginScreen> {
                                   .add(LoginWithFacebookEvent());
                             },
                           ),
-                        ),
+                        ),*/
                         FutureBuilder<bool>(
                           future: apple.TheAppleSignIn.isAvailable(),
                           builder: (context, snapshot) {
